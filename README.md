@@ -1,63 +1,150 @@
-[![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-2e0aaae1b6195c2367325f4f02e2d04e9abb55f0b24a779b69b11b9e10269abc.svg)](https://classroom.github.com/online_ide?assignment_repo_id=19809521&assignment_repo_type=AssignmentRepo)
-# Express.js RESTful API Assignment
+# 📦 Express.js Products API
 
-This assignment focuses on building a RESTful API using Express.js, implementing proper routing, middleware, and error handling.
+A RESTful API built with **Express.js** to manage a list of products. This project includes CRUD operations, middleware, error handling, filtering, pagination, search, and basic statistics.
 
-## Assignment Overview
+---
 
-You will:
-1. Set up an Express.js server
-2. Create RESTful API routes for a product resource
-3. Implement custom middleware for logging, authentication, and validation
-4. Add comprehensive error handling
-5. Develop advanced features like filtering, pagination, and search
+## 🛠️ Setup Instructions
 
-## Getting Started
+### ✅ Prerequisites
+- [Node.js](https://nodejs.org/) v18 or higher
+- [npm](https://www.npmjs.com/)
+- [Git](https://git-scm.com/)
 
-1. Accept the GitHub Classroom assignment invitation
-2. Clone your personal repository that was created by GitHub Classroom
-3. Install dependencies:
+### 📁 Installation Steps
+
+1. **Clone your repository:**
+   ```bash
+   git clone https://github.com/PLP-MERN-Stack-Development/week-2-express-js-assignment-elijahok.git
+   cd week-2-express-js-assignment-elijahok
    ```
+
+2. **Install dependencies:**
+   ```bash
    npm install
    ```
-4. Run the server:
-   ```
+
+3. **Start the server:**
+   ```bash
    npm start
    ```
 
-## Files Included
+4. Server will run on `http://localhost:3000`
 
-- `Week2-Assignment.md`: Detailed assignment instructions
-- `server.js`: Starter Express.js server file
-- `.env.example`: Example environment variables file
+---
 
-## Requirements
+## 📌 API Endpoints
 
-- Node.js (v18 or higher)
-- npm or yarn
-- Postman, Insomnia, or curl for API testing
+### 🔄 Base Route: `/api/products`
 
-## API Endpoints
+| Method | Endpoint                 | Description                         |
+|--------|--------------------------|-------------------------------------|
+| GET    | `/api/products`          | Get all products (with optional pagination & filtering) |
+| GET    | `/api/products/:id`      | Get a product by ID                 |
+| POST   | `/api/products`          | Create a new product                |
+| PUT    | `/api/products/:id`      | Update a product by ID              |
+| DELETE | `/api/products/:id`      | Delete a product by ID              |
+| GET    | `/api/products/search?name=abc` | Search products by name    |
+| GET    | `/api/products/stats`    | Get statistics (count by category)  |
 
-The API will have the following endpoints:
+---
 
-- `GET /api/products`: Get all products
-- `GET /api/products/:id`: Get a specific product
-- `POST /api/products`: Create a new product
-- `PUT /api/products/:id`: Update a product
-- `DELETE /api/products/:id`: Delete a product
+## 🔍 Query Parameters
 
-## Submission
+- **Pagination:**
+  - `?page=1&limit=10`
+- **Filtering by category:**
+  - `?category=electronics`
+- **Search by name:**
+  - `/api/products/search?name=laptop`
 
-Your work will be automatically submitted when you push to your GitHub Classroom repository. Make sure to:
+---
 
-1. Complete all the required API endpoints
-2. Implement the middleware and error handling
-3. Document your API in the README.md
-4. Include examples of requests and responses
+## 🧪 Example Request & Response
 
-## Resources
+### ✅ Create a Product
+**POST** `/api/products`
+```json
+{
+  "name": "Laptop",
+  "description": "14-inch touchscreen",
+  "price": 899.99,
+  "category": "electronics",
+  "inStock": true
+}
+```
 
-- [Express.js Documentation](https://expressjs.com/)
-- [RESTful API Design Best Practices](https://restfulapi.net/)
-- [HTTP Status Codes](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status) 
+**Response:**
+```json
+{
+  "id": "generated-uuid",
+  "name": "Laptop",
+  "description": "14-inch touchscreen",
+  "price": 899.99,
+  "category": "electronics",
+  "inStock": true
+}
+```
+
+---
+
+## 🧱 Project Structure
+
+```
+.
+├── server.js
+├── routes/
+│   └── productRoutes.js
+├── controllers/
+│   ├── productController.js
+│   └── advancedController.js
+├── middleware/
+│   ├── logger.js
+│   ├── auth.js
+│   ├── validate.js
+│   └── errorHandler.js
+├── utils/
+│   └── errors.js
+└── README.md
+```
+
+---
+
+## 🔐 Authentication
+
+- Add `x-api-key` header to requests:
+  ```
+  x-api-key: your-api-key
+  ```
+- If missing or incorrect, the API will return `401 Unauthorized`.
+
+---
+
+## 📄 Environment Variables
+
+Create a `.env` file with the following:
+
+```
+API_KEY=your-api-key
+PORT=3000
+```
+
+Provide a `.env.example` file with the same variables but placeholder values.
+
+---
+
+## 🧰 Technologies Used
+
+- Express.js
+- UUID
+- Node.js
+- Body-parser
+- JavaScript
+
+---
+
+## ✅ Author
+
+**Elijah Ok**  
+Kenyatta University – School of Economics  
+GitHub Classroom Student Repo
